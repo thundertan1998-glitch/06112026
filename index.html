@@ -1,0 +1,345 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You, This Winter</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Manrope:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --wine: #8d3545;
+    --cream: #eee5db;
+    --muted: #a99a94;
+}
+
+body {
+    background: #100d10;
+    color: var(--cream);
+    font-family: 'Manrope', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.background {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background:
+      linear-gradient(90deg,
+        rgba(12,9,12,.93),
+        rgba(12,9,12,.58),
+        rgba(12,9,12,.72)),
+      linear-gradient(0deg, #100d10 0%, transparent 70%),
+      url('https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=2000&q=85')
+      center / cover;
+    filter: saturate(.65);
+    transform: scale(1.03);
+}
+
+.grain {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: .12;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+}
+
+main {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 35px 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 760px;
+    text-align: center;
+}
+
+.topline {
+    font-size: 9px;
+    letter-spacing: 6px;
+    color: #c5a7a4;
+    margin-bottom: 55px;
+    animation: fadeUp 1.5s ease both;
+}
+
+.ornament {
+    color: var(--wine);
+    font-size: 18px;
+    margin-bottom: 23px;
+}
+
+h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(49px, 10vw, 88px);
+    line-height: 1.02;
+    font-weight: 300;
+    letter-spacing: -2px;
+    animation: fadeUp 1.7s ease both;
+}
+
+h1 span {
+    color: #bb7b80;
+    font-style: italic;
+}
+
+.subtitle {
+    font-size: 11px;
+    color: #b3a6a0;
+    letter-spacing: 2px;
+    margin-top: 25px;
+    animation: fadeUp 2s ease both;
+}
+
+.separator {
+    width: 55px;
+    height: 1px;
+    background: #98616b;
+    margin: 42px auto;
+}
+
+.open-btn {
+    background: transparent;
+    border: 1px solid rgba(190,135,140,.6);
+    color: #e6d6ce;
+    padding: 15px 35px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 9px;
+    letter-spacing: 3px;
+    cursor: pointer;
+    transition: .4s;
+}
+
+.open-btn:hover {
+    background: #713541;
+    border-color: #713541;
+    letter-spacing: 4px;
+}
+
+.intro {
+    transition: .8s ease;
+}
+
+.intro.hide {
+    opacity: 0;
+    transform: translateY(-20px);
+    pointer-events: none;
+}
+
+.letter {
+    display: none;
+    opacity: 0;
+    transform: translateY(25px);
+    max-width: 530px;
+    margin: auto;
+    animation: reveal 1.3s ease forwards;
+}
+
+.letter.show {
+    display: block;
+}
+
+.letter-label {
+    font-size: 9px;
+    letter-spacing: 5px;
+    color: #b77c82;
+    margin-bottom: 32px;
+}
+
+.letter h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(38px, 7vw, 57px);
+    font-weight: 400;
+    margin-bottom: 30px;
+}
+
+.letter p {
+    font-size: 13px;
+    line-height: 2.2;
+    color: #c9bdb7;
+    font-weight: 300;
+    margin-bottom: 15px;
+}
+
+.letter .emphasis {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 27px;
+    line-height: 1.5;
+    color: #e8d6d0;
+    margin: 28px 0;
+}
+
+.signature {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: #bd8589;
+    margin-top: 35px;
+}
+
+.footer {
+    position: fixed;
+    z-index: 2;
+    bottom: 25px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 8px;
+    letter-spacing: 4px;
+    color: #897b78;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes reveal {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media(max-width: 600px) {
+    .topline {
+        margin-bottom: 45px;
+    }
+
+    .letter p {
+        font-size: 12px;
+    }
+
+    .separator {
+        margin: 32px auto;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="background"></div>
+<div class="grain"></div>
+
+<main>
+<div class="container">
+
+    <div class="intro" id="intro">
+
+        <div class="topline">
+            A LETTER IN THE WINTER
+        </div>
+
+        <div class="ornament">✦</div>
+
+        <h1>
+            A little<br>
+            <span>warmth</span><br>
+            for you.
+        </h1>
+
+        <div class="subtitle">
+            SOME WORDS I WANT YOU TO READ
+        </div>
+
+        <div class="separator"></div>
+
+        <button class="open-btn" onclick="openLetter()">
+            READ MY MESSAGE
+        </button>
+
+    </div>
+
+    <div class="letter" id="letter">
+
+        <div class="letter-label">
+            A NOTE FOR YOU · NOVEMBER
+        </div>
+
+        <h2>Gửi Ánh,</h2>
+
+        <p>
+            Theo như dự báo thời tiết
+            không khí mùa đông đang đến gần.
+            Những ngày cuối thu rồi cũng sẽ qua,
+            và những cơn gió lạnh sẽ bắt đầu xuất hiện.
+        </p>
+
+        <div class="separator"></div>
+
+        <p class="emphasis">
+            Tuần sau trời lạnh rồi đó,<br>
+            em nhớ mặc áo ấm nhé.
+        </p>
+
+        <p>
+            Khi ra ngoài, nhớ mang theo áo khoác.
+            Đừng chủ quan với những ngày trời trở lạnh.
+            Có thể em không quan tâm anh.
+            Nhưng một chút quan tâm dành cho bản thân
+            cũng là điều rất đáng trân trọng.
+        </p>
+
+        <p>
+            Mong rằng dù mùa đông năm nay có lạnh
+            đến đâu, những ngày của em vẫn luôn
+            bình yên và dễ chịu.
+        </p>
+
+        <div class="signature">
+            Mất tích ít thôi nhé.
+        </div>
+
+        <div class="separator"></div>
+
+        <p style="font-size:10px;letter-spacing:2px;color:#a98d8b">
+            TAKE GOOD CARE OF YOURSELF.
+        </p>
+
+    </div>
+
+</div>
+</main>
+
+<div class="footer">
+    ĐNT
+</div>
+
+<script>
+function openLetter() {
+    const intro = document.getElementById('intro');
+    const letter = document.getElementById('letter');
+
+    intro.classList.add('hide');
+
+    setTimeout(() => {
+        intro.style.display = 'none';
+        letter.classList.add('show');
+    }, 800);
+}
+</script>
+
+</body>
+</html>
